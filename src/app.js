@@ -29,12 +29,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', apiRouter);
 
 app.use('*', (req, res, next) => {
-  next({ status: 404 });
+  next({ status: 404, message: 'Not found' });
 });
 
 app.use('*',  (err, req, res, next) => {
   res
-    .status(err.status || 400)
+    .status(err.status || 500)
     .json({
       message: err.message,
       code: err.customCode

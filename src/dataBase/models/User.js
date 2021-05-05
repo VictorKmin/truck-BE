@@ -10,4 +10,8 @@ const userSchema = new Schema({
   role: { type: String, enum: Object.values(userRolesEnum) }
 })
 
+userSchema.statics = {
+  find
+}
+
 module.exports = model('User', userSchema);

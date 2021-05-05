@@ -1,11 +1,11 @@
-const { userService } = require('../services');
+const { User } = require('../dataBase/models');
 
 module.exports = {
-  checkIfExists: async (req, res, next) => {
+  checkIfExistsByParams: (param, searchIn = 'body') => async (req, res, next) => {
     try {
-      const { user_id } = req.params;
+      const fieldToSearch = req[searchIn] && req[searchIn][param];
 
-      const user = await userService.getById(user_id);
+      const user = await User.findOne({ [param]: fieldToSearch });
 
       if (!user) {
         return next({
