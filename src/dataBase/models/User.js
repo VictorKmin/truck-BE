@@ -11,7 +11,6 @@ const userSchema = new Schema({
 })
 
 userSchema.statics = {
-  find
 }
 
 module.exports = model('User', userSchema);
